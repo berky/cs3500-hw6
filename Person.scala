@@ -20,7 +20,12 @@ object Person {
 class Person protected (n:String,l:Room)
                             extends MobileThing(n,l) with Container {
 
-    private val initialHealth = 3
+    override protected def install ():Unit = {
+        super.install()
+        Adventure.clock().register(wormholeAction,5)
+    }
+
+    private val initialHealth = 20
     private var theHealth = initialHealth
 
     def health ():Int = theHealth
@@ -117,13 +122,27 @@ class Person protected (n:String,l:Room)
     }
 
     def ask ():Unit = {
-        say ("Don't bug me, I'm very busy right now!")
+        say("Don't bug me, I'm very busy right now!")
     }
 
     override def enterRoom ():Unit = {
         val people = peopleAround()
         if (!people.isEmpty())
             say("Hi " + Util.getNames(people))
+    }
+
+    def wormhole ():Unit = {
+        val oldRoom = location()
+        val worldList = Adventure.world()
+        val tempRoom = Util.pickRandom(worldList)
+        this.changeLocation(tempRoom)
+        say("How the hell did I end up in " + tempRoom.name() + 
+            " from " + oldRoom.name() + "?")
+    }
+
+    def wormholeAction (i:Int):Unit = {
+        if ((!isInLimbo()) && (i % 10 == 0))
+            wormhole()
     }
     
     override def checkPerson ():Option[Person] = Option.some(this)

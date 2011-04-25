@@ -129,13 +129,14 @@ object Adventure {
         MobileThing.create("htdp", matthiaslair)
 
         // EXERCISE 0
-        Computer.create("eric-laptop", hurtig)
+        Laptop.create("eric-mbp", hurtig)
         Thing.create("comfy-chair", abp)
         Thing.create("not-so-comfy-chair", wvh346)
         MobileThing.create("chem-book", hurtig)
         MobileThing.create("banana", lake)
         GPSTracker.create("lcars", matthiaslair)
         GPSTracker.create("iphone", me())
+        MaraudersMap.create("marauders-map", me())
 
         val homeworks = Array("hw-1",
 			      "hw-2",
@@ -158,7 +159,6 @@ object Adventure {
 			            Util.pickRandom(world()),
 			            Util.random(5), Util.random(5))
 
-        // EXERCISE 3: Once you have implemented Grader, uncomment this
         val graders = Array("nick","jake")
         
         for (grader <- graders)
@@ -167,7 +167,7 @@ object Adventure {
         		  Util.random(5),
         		  Util.random(5))
 
-        val professors = Array("riccardo","viera")
+        val professors = Array("riccardo","viera","pete")
 
         for (professor <- professors)
             Professor.create(professor,
@@ -175,20 +175,16 @@ object Adventure {
 		             Util.random(5),
 		             Util.random(5))
 
-        val prlGrads = Array("daniel",
-                             "aaron")
-                             //,"sam",
-                             //"carl")
+        val prlGrads = Array("sam",
+                             "carl")
 
         for (prlGrad <- prlGrads)
             PrlGrad.create(prlGrad,
 		           Util.pickRandom(world()),
 		           Util.random(5), Util.random(5))
 
-        val trolls = Array("polyphemus",
-		           "olin")
-                           //,"felix",
-                           //"matthias")
+        val trolls = Array("felix",
+                           "matthias")
 
         for (troll <- trolls)
             Troll.create(troll,
@@ -203,6 +199,7 @@ object Adventure {
         p.subscribe(God.create())
         p.subscribe(Look.create())
         p.subscribe(Wait.create())
+        p.subscribe(Wormhole.create())
         p.subscribe(Take.create())
         p.subscribe(Drop.create())
         p.subscribe(Give.create())
@@ -214,7 +211,7 @@ object Adventure {
         p.subscribe(DirectionVerb.create("west"))
         p.subscribe(DirectionVerb.create("up"))
         p.subscribe(DirectionVerb.create("down"))
-        // p.subscribe(Cheat.create())
+        p.subscribe(Cheat.create())
     }
 
 

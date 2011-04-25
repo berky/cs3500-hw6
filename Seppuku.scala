@@ -12,7 +12,7 @@ object Seppuku {
     def create ():Verb = new Seppuku
 }
 
-
+// every game needs a way to commit ritualistic suicide!
 class Seppuku protected extends Verb("seppuku") {
 
     override def action ():Result = {

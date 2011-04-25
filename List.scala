@@ -28,7 +28,7 @@ object List {
 
         def foreach (f:(T)=>Unit):Unit = ()
 
-            def toStringLst ():String = ""
+        def toStringLst ():String = ""
 
         override def toString ():String = ""
         override def hashCode ():Int = 

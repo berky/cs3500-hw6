@@ -4,7 +4,7 @@
  * 
  * Implements the player character
  *
- */
+ ********************************************************************** */
 
 
 object Player {
@@ -70,9 +70,10 @@ class Player protected (n:String,l:Room) extends Person(n,l) {
 
 
     override def die ():Unit = {
-        say ("I am slain!")
+        say("I am slain!")
         super.die()
         println("(I am afraid this game is over for you)")
         System.exit(0)
     }
+    
 }

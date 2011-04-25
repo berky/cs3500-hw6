@@ -19,8 +19,8 @@ class Ask protected extends Verb("ask") {
         if (obj.checkPerson().isSome()) 
             obj.checkPerson().valOf().ask()
         else
-            Adventure.me().say ("I feel weird asking something of " + 
-			        obj.name())
+            Adventure.me().say("I feel weird asking something of " + 
+			       obj.name())
         Result.REMAIN
     }
     

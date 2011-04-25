@@ -4,7 +4,7 @@
  * 
  * Implements the various go-in-some-direction verbs
  *
- */
+ ********************************************************************** */
 
 
 object DirectionVerb {

@@ -13,7 +13,6 @@ object Clock {
 
 }
 
-// EXERCISE 2
 
 class Clock protected (init:Int) {
 
@@ -25,6 +24,8 @@ class Clock protected (init:Int) {
     def callActions ():Unit =
         actions.foreach(x => x.action(time()))
 
+    // each ClockAction is added to the list of registered actions
+    // in order of decreasing priority
     def createActionList (ca:ClockAction, 
                           l:List[ClockAction]):List[ClockAction] = {
 
@@ -46,6 +47,7 @@ class Clock protected (init:Int) {
         callActions()
     }
 
+    // slightly more descriptive than using Pairs
     protected class ClockAction (a:(Int)=>Unit, p:Int) {
         def action = a
         val priority = p

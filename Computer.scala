@@ -16,7 +16,8 @@ object Computer {
 }
 
 
-class Computer protected (n:String,l:Container) extends Thing(n,l) with Usable {
+class Computer protected (n:String,l:Container) 
+    extends Thing(n,l) with Usable {
 
     def use (user:Person):Unit = {
 
@@ -27,8 +28,10 @@ class Computer protected (n:String,l:Container) extends Thing(n,l) with Usable {
 
         val homeworks = 
             user.things().filter(isUnfinished).map(toUnfinished)
+        
         if (homeworks.isEmpty()) {
-            user.say ("Aargh! This computer is near useless!");
+            user.say ("Aargh! This computer is near useless!" + 
+                      " It only has vi, the editor of the beast!");
         } else {
             for (uhw <- homeworks) {
 	        user.say("Okay, time to finish " + uhw.name());

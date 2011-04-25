@@ -17,7 +17,6 @@ object Grader {
 
 }
 
-
 class Grader protected (n:String,l:Room,s:Int,m:Int) 
     extends AutonomousPerson(n,l,s,m) {
 

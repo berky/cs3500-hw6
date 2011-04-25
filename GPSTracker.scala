@@ -2,7 +2,8 @@
 /***********************************************************************
  * GPSTracker class
  *
- * ...
+ * A Usable MobileThing that tells the location of every Person in
+ * the world
  *
  ********************************************************************** */
 
@@ -16,40 +17,26 @@ object GPSTracker {
     }
 }
 
-
 class GPSTracker protected (n:String,l:Container) 
     extends MobileThing(n,l) with Usable {
 
-    def isPerson[T] (a:T):Boolean = 
-        a match {
-            case _:Person => true
-            case _        => false
-        }
-
-    def personCast (ar:Thing):Person =
-        ar match {
-            case per:Person => per
-            case _          => 
-                throw new RuntimeException("downcast to Person failed")
-        }
-
-    def personList (tl:List[Thing]):List[Person] = 
-        if (tl.isEmpty())
-            List.empty[Person]()
-        else if (isPerson(tl.first()))
-            List.cons[Person](personCast(tl.first()),
-                              personList(tl.rest()))
-        else
-            personList(tl.rest())
-
     def use (user:Person):Unit = {
+
+        def isPerson (t:Thing):Boolean = 
+            t.checkPerson.isSome()
+        def toPerson (t:Thing):Person = 
+            t.checkPerson.valOf()
         
         Adventure.me().say("I fiddle with the buttons on the " + n)
         
         var pairs:List[Pair[Person,Room]] = List.empty()
 
+        // for every room in the world, make a pair of 
+        // every person in the room and the room itself
         for (room <- Adventure.world()) {
-            val peopleTemp = personList(room.things())
+            
+            val peopleTemp = room.things().filter(isPerson).map(toPerson)
+
             for (person <- peopleTemp) {
                 pairs = List.cons(Pair.create(person, room), pairs)
             }
