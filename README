@@ -56,6 +56,11 @@ Seppuku.scala:
         The verb "seppuku" provides a more...interesting way to end
         the game.
 
+Wormhole.scala:
+        The verb "wormhole" will send you to a random room on the
+        map. Implemented in Person.scala, it's also registered as an
+        automatic action every 10 clock ticks for every (N)PC.
+
 /**********************************
 
 GPS Trackers (moveable):
@@ -67,4 +72,21 @@ Computers (non-moveable):
         johnny-5
 
 Laptops (moveable):
-        eric-laptop
+        eric-mbp
+
+Things (non-moveable):
+        blackboard
+        lovely-trees
+        comfy-chair
+        not-so-comfy-chair
+
+MobileThings (moveable):
+        cs-book
+        math-book
+        htdp
+        chem-book
+        banana
+
+MaraudersMap (special, non-moveable)
+
+/**********************************
