@@ -4,7 +4,7 @@
  * 
  * Implements unfinished homeworks (a special kind of homework)
  *
- ***********************************************************************/
+ ********************************************************************** */
 
 object UnfinishedHomework {
 

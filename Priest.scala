@@ -3,7 +3,7 @@
  * Priest class
  * 
  * Implements priests
- * Converts Persons of one class to another
+ * Randomly creates new homeworks
  *
  ********************************************************************** */
 
@@ -20,20 +20,19 @@ object Priest {
 
 class Priest (n:String,l:Room,s:Int,mana:Int) extends AutonomousPerson(n,l,s,10) {
 
-    def personDowncast (t:Thing):Unit = 
-         t match {
-             case tr:Troll => tr
-             case pr:Professor => pr
-             case pg:PrlGrad => pg
-             case ps:Priest => ps
-             case ap:AutonomousPerson => ap
-             case p:Person => p
-             case mt:MobileThing => mt
-             case t:Thing => t
-         }
+    override protected def install ():Unit = {
+        super.install()
+        Adventure.clock().register(magicHomeworkAction,50)
+    }   
 
-    
+    private def magicHomeworkAction (i:Int):Unit = magicHomework()
 
+    protected def magicHomework ():Unit = {
+        if (Util.random(mana) == mana) {
+            say("WOLOLO!")
+            UnfinishedHomework.create("magical-hw",l)
+        }
+    }
 }
 
 

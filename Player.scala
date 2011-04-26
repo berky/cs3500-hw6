@@ -27,7 +27,7 @@ class Player protected (n:String,l:Room) extends Person(n,l) {
     def thingNamed (name:String):Thing = {
         val all = location().things().append(peekAround()).append(things())
         def sameName (t:Thing):Boolean = (t.name()==name)
-            val l = all.filter(sameName)
+        val l = all.filter(sameName)
         l.length() match {
             case 0 => throw new Util.ArtNotFoundException(name)
             case 1 => l.first()

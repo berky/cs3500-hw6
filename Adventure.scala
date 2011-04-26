@@ -43,6 +43,24 @@ object Adventure {
         else
             Vars.godMode = true
 
+    private var worldPeople:List[Person] = List.empty()
+    
+    // build and return a list of all people in the world
+    def people ():List[Person] = {
+        def isPerson (t:Thing):Boolean =
+            t.checkPerson.isSome()
+        def toPerson (t:Thing):Person = 
+            t.checkPerson.valOf()
+        
+        for (room <- world()) {
+            val peopleTemp = room.things().filter(isPerson).map(toPerson)
+            for (person <- peopleTemp)
+                worldPeople = List.cons(person, worldPeople)
+        }
+
+        return worldPeople
+    }
+
 
     /*
      * A helpful auxiliary method to connect places on the map
@@ -190,6 +208,14 @@ object Adventure {
             Troll.create(troll,
 		         Util.pickRandom(world()),
 		         Util.random(3), Util.random(3))
+        
+        //val priests = Array("kryptos",
+        //                    "xenos")
+
+        //for (priest <- priests)
+        //    Priest.create(priest,
+        //                  Util.pickRandom(world()),
+        //                  Util.random(20), Util.random(20))
     }
     
     
@@ -199,6 +225,7 @@ object Adventure {
         p.subscribe(God.create())
         p.subscribe(Look.create())
         p.subscribe(Wait.create())
+        p.subscribe(Teleport.create())
         p.subscribe(Wormhole.create())
         p.subscribe(Take.create())
         p.subscribe(Drop.create())

@@ -7,10 +7,12 @@
  *
  ********************************************************************** */
 
+
 object Wormhole {
 
     def create ():Verb = new Wormhole
 }
+
 
 class Wormhole protected extends Verb("wormhole") {
 

@@ -32,20 +32,19 @@ class Thing protected (n:String,l:Container) extends Artifact(n)  {
 
     def isInLimbo ():Boolean = (location() == Limbo)
 
-        override def destroy ():Unit = {
-            location().delThing(this)
-            super.destroy()
-            // move to Limbo -- this keeps location non-null
-            theLocation=Limbo
-            if (Adventure.isGodMode())
-                println("("+name() + " is destroyed)")
-        }
+    override def destroy ():Unit = {
+        location().delThing(this)
+        super.destroy()
+        // move to Limbo -- this keeps location non-null
+        theLocation=Limbo
+        if (Adventure.isGodMode())
+            println("("+name() + " is destroyed)")
+    }
 
     def report (text:String):Unit =
         // this checkRoom().valOf() should always succeed
         location().checkRoom().valOf().report("At " + location().name() + 
 					      " " + text)
-
 
     def broadcast (text:String):Unit = 
         println(text)

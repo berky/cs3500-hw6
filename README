@@ -6,7 +6,8 @@ Homework 6/Final Project: The Adventure Game
 /**********************************
 
 Adventure.scala:
-        Added a few rooms, things, and people.
+        Added a few rooms, things, people, and subscribers. 'people()'
+        builds a list of all Persons in the world.
 
 Cheat.scala:
         Want to know who is carrying what item? Use the verb "cheat"
@@ -20,8 +21,12 @@ Clock.scala:
         we simply traverse the list as is and perform each action in
         order.
 
+Computable.scala:
+        A new trait that has had all the old Computer class code
+        pushed into it so that it may be extended with other classes/traits.
+
 Computer.scala:
-        Now shows my true feelings.
+        A Thing that extends the Computable trait. 
 
 GPSTracker.scala:
         A usable device that reports the location of every person in
@@ -41,7 +46,7 @@ Grader.scala:
         possible. Borrowed main logic from Computer.scala.
 
 Laptop.scala:
-        A Computer that extends MobileThing.
+        A MobileThing that extends the Computable trait.
 
 MaraudersMap.scala:
         "cheat" and GPSTracker all rolled into one...the final
@@ -52,9 +57,18 @@ Person.scala:
         Changed everyone's initial health from 3 to 20 because I was
         tired of dying from troll bites.
 
+Priest.scala:
+        ...
+
 Seppuku.scala:
         The verb "seppuku" provides a more...interesting way to end
         the game.
+
+Teleport.scala:
+        Another new verb.
+        "teleport" acts the same as "wormhole".
+        "teleport <Room>" sends the player to the given room.
+        "teleport <Person> <Room>" sends the given Person to the given Room.
 
 Wormhole.scala:
         The verb "wormhole" will send you to a random room on the

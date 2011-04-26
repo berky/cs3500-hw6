@@ -22,10 +22,10 @@ class Laptop protected (n:String,l:Container)
     // this is most definitely a hack to get around
     // Computer not being a trait
     def use (user:Person):Unit = {
-        val tempComputer = Computer.create("",Limbo)
+        val tempComputer = Computer.create("limbo-computer-of-doom",Limbo)
         tempComputer.use(user)
+        tempComputer.destroy()
     }
 
     override def checkUsable ():Option[Usable] = Option.some(this)
-
 }

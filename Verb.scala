@@ -4,7 +4,7 @@
  * 
  * Implements verb functionality
  *
- */
+ ********************************************************************** */
 
 
 abstract class Verb (w:String) extends Subscriber[Array[String],Result] {

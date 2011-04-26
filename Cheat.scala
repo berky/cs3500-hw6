@@ -10,11 +10,11 @@
 
 object Cheat {
 
-    def create ():Verb = new Cheat()
+    def create ():Verb = new Cheat
 }
 
 
-class Cheat protected () extends Verb("cheat") {
+class Cheat protected extends Verb("cheat") {
 
     override def action ():Result = {
 
