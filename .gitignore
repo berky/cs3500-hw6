@@ -2,3 +2,4 @@
 .ensime*
 *#README#*
 .#README*
+*.class
