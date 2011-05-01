@@ -4,7 +4,7 @@
  * 
  * Trait for artifacts that can be used
  *
- */
+ ********************************************************************** */
 
 
 trait Usable {

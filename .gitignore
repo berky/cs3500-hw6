@@ -1,5 +1,5 @@
 *~
-.ensime*
+*.ensime*
 *#README#*
 .#README*
-*.class
+*class*

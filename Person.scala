@@ -116,7 +116,14 @@ class Person protected (n:String,l:Room)
     def die ():Unit = {
         for (item <- things())
             // the checkMobileThing().valOf() should always succeed
-	    lose(item.checkMobileThing().valOf(),location())
+            /*
+             * ejb: or we can simply check; if the Person is carring a
+             * Thing (not Mobile), it gets destroyed. This caused problems
+             * with the Marauder's Map, which is a Thing so NPCs can't
+             * grab it.
+             */
+	    if (!item.checkMobileThing().isNone())
+                lose(item.checkMobileThing().valOf(),location())
         broadcast("An earth-shattering, soul-piercing scream is heard...")
         destroy()
     }
@@ -133,8 +140,7 @@ class Person protected (n:String,l:Room)
 
     def wormhole ():Unit = {
         val oldRoom = location()
-        val worldList = Adventure.world()
-        val tempRoom = Util.pickRandom(worldList)
+        val tempRoom = Util.pickRandom(Adventure.world())
         this.changeLocation(tempRoom)
         say("How the hell did I end up in " + tempRoom.name() + 
             " from " + oldRoom.name() + "?")

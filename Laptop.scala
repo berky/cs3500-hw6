@@ -17,15 +17,8 @@ object Laptop {
 
 
 class Laptop protected (n:String,l:Container) 
-    extends MobileThing(n,l) with Usable {
-
-    // this is most definitely a hack to get around
-    // Computer not being a trait
-    def use (user:Person):Unit = {
-        val tempComputer = Computer.create("limbo-computer-of-doom",Limbo)
-        tempComputer.use(user)
-        tempComputer.destroy()
-    }
+    extends MobileThing(n,l) with Computable {
 
     override def checkUsable ():Option[Usable] = Option.some(this)
+    override def checkComputable ():Option[Computable] = Option.some(this)
 }

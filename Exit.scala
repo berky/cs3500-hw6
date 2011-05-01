@@ -5,7 +5,7 @@
  * Implements exits from places
  * Technically an artifact, but this is a bit artificial
  *
- */
+ ********************************************************************** */
 
 object Exit {
 

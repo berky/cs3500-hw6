@@ -5,7 +5,7 @@
  * Implements homeworks
  * Class is abstract, subclasses will define the kinds of homeworks
  * 
- */
+ ********************************************************************** */
 
 
 abstract class Homework protected (name:String, location:Container) 

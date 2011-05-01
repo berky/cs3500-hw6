@@ -4,10 +4,19 @@ CS 3500: Object-Oriented Design
 Homework 6/Final Project: The Adventure Game
 
 /**********************************
+/* RAW CHANGES
 
 Adventure.scala:
         Added a few rooms, things, people, and subscribers. 'people()'
-        builds a list of all Persons in the world.
+        builds a list of all Persons in the world. 'worldThings()'
+        builds a list of all Things in the world.
+
+        Pushing the two list-builders into Adventure cut down on a lot
+        of duplicate code that originally appeared in Cheat,
+        GPSTracker, and MaraudersMap, all of which now are much simpler.
+
+Artifact.scala:
+        Added the requisite check methods for the new Computable trait.
 
 Cheat.scala:
         Want to know who is carrying what item? Use the verb "cheat"
@@ -55,10 +64,8 @@ MaraudersMap.scala:
 
 Person.scala:
         Changed everyone's initial health from 3 to 20 because I was
-        tired of dying from troll bites.
-
-Priest.scala:
-        ...
+        tired of dying from troll bites. Altered die() so there aren't
+        RuntimeExceptions when someone is carrying a Thing and gets killed.
 
 Seppuku.scala:
         The verb "seppuku" provides a more...interesting way to end
@@ -76,6 +83,7 @@ Wormhole.scala:
         automatic action every 10 clock ticks for every (N)PC.
 
 /**********************************
+/* ITEMS (usable)
 
 GPS Trackers (moveable):
         iphone
@@ -101,6 +109,7 @@ MobileThings (moveable):
         chem-book
         banana
 
-MaraudersMap (special, non-moveable)
+MaraudersMap (special, non-moveable):
+        marauders-map
 
 /**********************************

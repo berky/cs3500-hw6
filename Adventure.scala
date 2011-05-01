@@ -42,8 +42,6 @@ object Adventure {
             Vars.godMode = false
         else
             Vars.godMode = true
-
-    private var worldPeople:List[Person] = List.empty()
     
     // build and return a list of all people in the world
     def people ():List[Person] = {
@@ -51,6 +49,8 @@ object Adventure {
             t.checkPerson.isSome()
         def toPerson (t:Thing):Person = 
             t.checkPerson.valOf()
+
+        var worldPeople:List[Person] = List.empty()
         
         for (room <- world()) {
             val peopleTemp = room.things().filter(isPerson).map(toPerson)
@@ -61,6 +61,25 @@ object Adventure {
         return worldPeople
     }
 
+    // build and return a list of all things in the world
+    def worldThings ():List[Thing] = {
+        def isPerson (t:Thing):Boolean = 
+            t.checkPerson.isSome()
+        def toPerson (t:Thing):Person = 
+            t.checkPerson.valOf()
+
+        var worldThings:List[Thing] = List.empty()
+
+        for (person <- people())
+            for (thing <- person.things())
+                worldThings = List.cons(thing, worldThings)
+        
+        for (room <- world())
+            for (thing <- room.things().filter(x => !isPerson(x)))
+                worldThings = List.cons(thing, worldThings)
+    
+        return worldThings
+    }
 
     /*
      * A helpful auxiliary method to connect places on the map
@@ -161,7 +180,11 @@ object Adventure {
 			      "hw-3",
 			      "hw-4",
 			      "hw-5",
-			      "hw-6")
+			      "hw-6",
+                              "hw-7", 
+                              "hw-8", 
+                              "hw-9", 
+                              "hw-10")
 
         for (homework <- homeworks)
             UnfinishedHomework.create(homework,
@@ -208,20 +231,12 @@ object Adventure {
             Troll.create(troll,
 		         Util.pickRandom(world()),
 		         Util.random(3), Util.random(3))
-        
-        //val priests = Array("kryptos",
-        //                    "xenos")
-
-        //for (priest <- priests)
-        //    Priest.create(priest,
-        //                  Util.pickRandom(world()),
-        //                  Util.random(20), Util.random(20))
     }
     
     
     def createVocabulary (p:Publisher[Array[String],Result]):Unit = {
-        p.subscribe(Seppuku.create())
         p.subscribe(Quit.create())
+        p.subscribe(Seppuku.create())
         p.subscribe(God.create())
         p.subscribe(Look.create())
         p.subscribe(Wait.create())
@@ -259,7 +274,7 @@ object Adventure {
         
         Vars.clock = Option.some(Clock.create(0))
         
-        println("The CS 3500 Adventure Game, version 1.3 (Spring 2011)")
+        println("The CS 3500 Adventure Game, version 1.3.1 (Spring 2011)")
 
         // Register an action to be performed at every turn
         clock().register(printTickAction,1)

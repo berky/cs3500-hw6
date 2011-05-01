@@ -31,8 +31,10 @@ class Grader protected (n:String,l:Room,s:Int,m:Int)
             things().filter(isCompleted).map(toCompleted)
 
         if (homeworks.isEmpty())
-            say("Get off reddit you lazy bugger and get me something" + 
-                " that type checks!")
+            say("Step 1: Get off reddit\n" + 
+                "Step 2: 'fsc *.scala'\n" +
+                "Step 3: ...\n" + 
+                "Step 4: good grade!")
 
         for (h <- homeworks) {
             say("Let's see. What's this? An infinite loop? Mmmm...")

@@ -36,6 +36,9 @@ class Artifact protected (n:String) {
 
     def checkUsable ():Option[Usable] =
         Option.none()
+
+    def checkComputable ():Option[Computable] = 
+        Option.none()
     
     def checkHomework ():Option[Homework] =
         Option.none()

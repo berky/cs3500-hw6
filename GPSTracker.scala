@@ -22,29 +22,14 @@ class GPSTracker protected (n:String,l:Container)
 
     def use (user:Person):Unit = {
 
-        def isPerson (t:Thing):Boolean = 
-            t.checkPerson.isSome()
-        def toPerson (t:Thing):Person = 
-            t.checkPerson.valOf()
-        
         Adventure.me().say("I fiddle with the buttons on the " + n)
         
-        var pairs:List[Pair[Person,Room]] = List.empty()
-
-        // for every room in the world, make a pair of 
-        // every person in the room and the room itself
-        for (room <- Adventure.world()) {
-            
-            val peopleTemp = room.things().filter(isPerson).map(toPerson)
-
-            for (person <- peopleTemp) {
-                pairs = List.cons(Pair.create(person, room), pairs)
-            }
-        }
-        
-        for (pair <- pairs)
-            Adventure.me().say("  " + pair.first().name() + 
-                               " is in " + pair.second().name())
+        // we know it's a list of Person, not MobileThing, so
+        // location().checkRoom().valOf() should always succeed
+        for (person <- Adventure.people())
+            Adventure.me().say("  " + person.name() + 
+                               " is in " + 
+                               person.location().checkRoom().valOf().name())
     }
 
     override def checkUsable ():Option[Usable] = Option.some(this)

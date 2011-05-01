@@ -3,7 +3,6 @@
  * Teleport class
  * 
  * Implements the "teleport" verb
- * sends the player to the given room
  *
  ********************************************************************** */
 
@@ -15,7 +14,7 @@ object Teleport {
 class Teleport protected extends Verb("teleport") {
 
     // find the room in the world with the given name
-    def roomNamed (name:String):Room = {
+    private def roomNamed (name:String):Room = {
         val all = Adventure.world()
         def sameName (r:Room):Boolean = (r.name() == name)
             val l = all.filter(sameName)
@@ -27,7 +26,7 @@ class Teleport protected extends Verb("teleport") {
     }
 
     // find the person in the world with the given name
-    def personNamed (name:String):Person = {
+    private def personNamed (name:String):Person = {
         val all = Adventure.people()
         def sameName (p:Person):Boolean = (p.name() == name)
             val l = all.filter(sameName)
